@@ -3926,7 +3926,7 @@ a.subdued {
       background-image: linear-gradient(180deg, #ddd, #ddd 50%, transparent 50%); }
   .bar.bar-stable {
     border-color: #b2b2b2;
-    background-color: #1874CD;
+    background-color: #ff5722;
     background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
     color: #444; }
     .bar.bar-stable .title {
@@ -4127,7 +4127,7 @@ a.subdued {
     border-color: transparent;
     background: none;
     box-shadow: none;
-    color: #444;
+    color: #fff;
     font-size: 17px; }
   .bar-stable .button.button-icon {
     border-color: transparent;
@@ -7706,7 +7706,8 @@ input[type="color"] {
 
 .item-input input,
 .item-input textarea {
-  width: 98%; }
+  width: 98%;
+  height: 70% }
 
 textarea {
   padding-left: 0; }
@@ -8875,8 +8876,8 @@ progress {
   background-color: #F0736A;
   clear: both; }
   .button-block:after {
-    opacity: 0.5;
-    background-color: #F0736A;
+    opacity: 0;
+    background-color: #FFF;
     clear: both; }
 
 .button-full,

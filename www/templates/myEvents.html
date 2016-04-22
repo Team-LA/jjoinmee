@@ -12,22 +12,26 @@
           ng-repeat="data in data"
           ng-if="data.userId === id">
 
-      <div class="list card" style="margin:auto;">
-        <div class="item item-divider">{{data.inputTitle}}</div>
-    <!--<div class="item item-image"><img src="{{ data.imageUrl }}" alt=""></div>-->
+      <div class="list card">
+        <div class="item item-avatar">
+          <img src="http://c3e308.medialib.glogster.com/media/a8/a8a548e90608f257858e20c3a85ccbf03cae6c4f07eb85ca751d82e0c643de70/gray-box.jpg">
 
-        <div class="item item-text-wrap"><b>Where</b>: {{data.address}}</div>
+        
+        <h2 style="font-family: helvetica; font-weight:bold; color: #00BCD4"><b>{{data.inputTitle}}</b></h2>
+        
 
-        <div class="item item-text-wrap"><b>When</b>: {{data.datetimeValue}}</div>
+        <div><b>When</b>: {{data.datetimeValue}}</div>
 
-        <div class="item item-text-wrap"><b>How long</b>: {{data.duration}}</div>
-
-        <div><i class="button button-block ion-map"
+        <div><b>How long</b>: {{data.duration}}</div>
+        
+        
+        <div><b>Where</b>: {{data.address}}
+       <div><i class="ion-map"
                 ng-click="getJoinees({{data.id}})"
                 style="margin:auto;
-                       font-size:30;
-                       color:#ffffff;
-                       border-color:#ffffff"></i>
+                       font-size:20px;
+                       color:#00BCD4"></i>
+                     </div>
 
 <!-- ng-click="showMap = ! showMap" -->
   <ng-map zoom="15"
@@ -48,14 +52,13 @@
       <control name="overviewMap" opened="true" />
     </ng-map>
 </div>
-
+</div>
   <div><i class="button button-block ion-person-stalker"
           ng-click="showAttendees(data.id); showLists = ! showLists"
           type="submit"
           style="margin:auto;
                  color:#fff;
-                 background:#00BCD4;
-                 border-color:#fff;"></i></div>
+                 background:#00BCD4"></i></div>
 
   <div class="allAttendees"
        ng-show="showLists"
@@ -66,15 +69,22 @@
           <span class="attendeeName" style="color: black">{{user.name}}</span>
   </div>
 
+
+      </div>
+    <!--<div class="item item-image"><img src="{{ data.imageUrl }}" alt=""></div>-->
+
+        
+       
 <div>
   <i class="button button-block ion-ios-trash-outline"
      style="margin:auto;
             color:#fff;
             font-size:30;
             border-color:#fff;"
-            type="submit"
-            ng-click="deleteEvent(data.id)"></i></div>
+      type="submit"
+      ng-click="deleteEvent(data.id)"></i>
 </div>
+
 </div>
 
 </ion-content>
