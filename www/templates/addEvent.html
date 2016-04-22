@@ -21,7 +21,7 @@
         <label class="item item-input item-stacked-label" ion-datetime-picker am-pm ng-model="datetimeValue">
           <span class="input-label"></span>
 
-          <input type="text" placeholder="Date and Time" value = "{{ datetimeValue | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}" ng-submit="getDateTime()" ng-model="datetimeValue">
+          <input type="text" placeholder="Date and Time" value = "{{ datetimeValue | amDateFormat:'dddd, MMMM Do YYYY, h:mm a' }}" ng-submit="getDateTime()" ng-model="datetimeValue">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label"></span>

@@ -26,6 +26,7 @@ angular.module('jauntly.searchCtrl', [])
             ifJoined(data.data[i]);
           }
         }
+        console.log('filtered', $scope.filtered)
       })
     })
   };
