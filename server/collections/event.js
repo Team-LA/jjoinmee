@@ -13,12 +13,14 @@ module.exports = {
       });
     },
     post: function (req, res) {
+      console.log('question')
       knex('events').insert({
           inputTitle: req.body.inputTitle,
           userId: knex('users').where({Email: req.body.Email}).select('id'),
           datetimeValue: req.body.datetimeValue,
           duration: req.body.duration,
-          address: req.body.address
+          address: req.body.address,
+          latlng: req.body.latlng
         })
         .then(function (firstData) {
           console.log('firstDat', firstData)
