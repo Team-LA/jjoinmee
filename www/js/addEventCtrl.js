@@ -1,11 +1,11 @@
 angular.module('jauntly.addEventCtrl', [])
 
-.controller('addEventCtrl', function ($scope, $state, ExpediaInfo, GoogleGeocodeInfo, Auth, Event, NgMap) {
+.controller('addEventCtrl', function ($scope, $state, AddressGeocoder, ExpediaInfo, GoogleGeocodeInfo, Auth, Event, NgMap) {
 
   $scope.results = {};
   $scope.address;
   $scope.email = Auth.authData.facebook.email;
-  $scope.latLng;
+  $scope.latlng;
   $scope.coordinates = [34.019269, -118.494344];
 
   $scope.search = function (location, activity) {
@@ -40,8 +40,23 @@ angular.module('jauntly.addEventCtrl', [])
 
   $scope.postEvent = function (inputTitle, address, datetimeValue, duration, imageUrl) {
 
-    Event.submitEvent({inputTitle: inputTitle, address: address, datetimeValue: datetimeValue, duration: duration, Email: $scope.email})
+  AddressGeocoder.getLocation(address)
+  .then(function(result){
+    if(result.success){
+      $scope.latlng = result.location.latitude + "," + result.location.longitude;
+      console.log("SCOPE LATLNG ISSSS: ", $scope.latlng);
+    }
+  })
+  .then(function(){
+    console.log("Line 67: ", $scope.latlng);
+    Event.submitEvent({inputTitle: inputTitle, 
+      address: address, 
+      latlng: $scope.latlng,
+      datetimeValue: datetimeValue, 
+      duration: duration, 
+      Email: $scope.email})
       .then(function() {
+        console.log('in addEventCtrl event added', $scope.latlng);
         $scope.inputTitle = null;
         $scope.duration = null;
         $scope.imageUrl = null;
@@ -52,7 +67,8 @@ angular.module('jauntly.addEventCtrl', [])
       .then(function() {
         console.log('event added');
         $state.go('app.myEvents');
-      });
+      })
+  })
   }
 
   $scope.clearFields = function () {
@@ -61,6 +77,7 @@ angular.module('jauntly.addEventCtrl', [])
     $scope.imageUrl = null;
     $scope.datetimeValue = null;
     $scope.address = null;
+    $scope.latlng = null;
     $state.go($state.current, {}, {reload: true, inherit: false});
   }
 
