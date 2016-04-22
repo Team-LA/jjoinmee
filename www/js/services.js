@@ -122,7 +122,12 @@ angular.module('jauntly.services', [])
     return $http.post(url, config);
   }
 
+  var getFullEvents = function() {
+    return $http.get('/api/events/allevents');
+  }
+
   return {
+    getFullEvents: getFullEvents,
     getAllEvents: getAllEvents,
     submitEvent: submitEvent,
     getMyEvents: getMyEvents,

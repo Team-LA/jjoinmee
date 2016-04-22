@@ -8,8 +8,7 @@ app.use(bodyParser());
 module.exports = {
   events: {
     get: function (req, res) {
-      knex('events').select('*').innerJoin('users_events', 'events.id', 'users_events.EventID')
-.then(function(data) {
+      knex('events').select('*').then(function(data) {
         res.send(data);
       });
     },
@@ -32,5 +31,17 @@ module.exports = {
             });
         });
     }
+  },
+  allevents: {
+    get: function(req, res) {
+      knex('events').select('*').innerJoin('users_events', 'events.id', 'users_events.EventID')
+        .then(function(data) {
+            res.send(data);
+          });
+    },
+    post: function(req, res){
+
+    }
+
   }
 };
