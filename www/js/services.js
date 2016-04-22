@@ -87,7 +87,6 @@ angular.module('jauntly.services', [])
     var params = {id: id};
     var config = {params: params};
     var url = 'api/event/' + id;
-    console.log('in service getAttendees, url, config', url, config)
     return $http.get(url, config);
   }
 
