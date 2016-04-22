@@ -1,5 +1,7 @@
 var knex = require('../database').knex;
 var Event = {};
+var https = require('https');
+
 
 Event.get = function(id) {
   return new Promise(function(resolve) {
@@ -45,5 +47,31 @@ Event.getJoint = function (userId) {
     }
   })
 };
+
+Event.sendRequest = function(address) {
+  var APIkey = "AIzaSyBcK8gSnEXC4SgWTsNwKOO8eeYnFmK5t8A";
+  var query = "https://maps.googleapis.com/maps/api/geocode/json?address="+ address +"&key=" + APIkey;
+  return new Promise(function(resolve, reject) {
+    https.get(query, function(res) {
+      var body = "";
+      res.on('data', function(chunk) {
+        body += chunk;
+      });
+      res.on('end', function(error) {
+        if(error) { 
+          console.log(error)
+          reject(error);
+        } else {
+
+          //get current address's longitude latitude
+          var result = JSON.parse(body);
+          longitude = result.results[0].geometry.location.lng;
+          latitude = result.results[0].geometry.location.lat;
+          resolve({longitude: longitude, latitude: latitude});
+        }
+      })
+    })
+  }); 
+}
 
 module.exports = Event;

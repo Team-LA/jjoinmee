@@ -28,7 +28,6 @@ angular.module('jauntly.myEventsCtrl', [])
           for (var i = 0; i < $scope.data.length; i++) {
             for (var j = 0; j < $scope.eventIDs.length; j++) {
               if ($scope.data[i].id === $scope.eventIDs[j].EventID) {
-                console.log('every event', $scope.data[i]);
                 $scope.filtered.push($scope.data[i]);
               }
             }
