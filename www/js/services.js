@@ -55,7 +55,6 @@ angular.module('jauntly.services', [])
           var deferred = $q.defer();
           var googleMap = new google.maps.Geocoder();
           googleMap.geocode( { 'address': address}, function(results, status) {
-              //console.log(results);
               if (status === google.maps.GeocoderStatus.OK) {
                   var ok = new result();
                   //console.log(ok);
