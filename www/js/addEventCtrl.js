@@ -18,14 +18,6 @@ angular.module('jauntly.addEventCtrl', [])
     });
   };
 
-  // $scope.clickInfo = function (result) {
-  //   $scope.inputTitle = result.title;
-  //   $scope.inputAddress = result.latLng;
-  //   $scope.duration = result.duration;
-  //   $scope.imageUrl = result.imageUrl;
-  //   $scope.latLng = result.latLng;
-  //   $scope.coordinates = "[" + result.latLng + "]";
-  // };
 
   $scope.getAddress = function (latlng) {
     GoogleGeocodeInfo.getAddress(latlng)
@@ -33,10 +25,6 @@ angular.module('jauntly.addEventCtrl', [])
       $scope.address = address.data.results[0].formatted_address;
     })
   };
-
-  // $scope.getDateTime = function () {
-  //   $scope.datetimeValue = new Date();
-  // };
 
   $scope.postEvent = function (inputTitle, address, datetimeValue, duration, imageUrl) {
 
