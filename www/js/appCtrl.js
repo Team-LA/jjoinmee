@@ -1,6 +1,6 @@
 angular.module('jauntly.appCtrl', [])
 
-.controller('AppCtrl', function($scope, $state, Auth, ParentFactory, $timeout, FB) {
+.controller('AppCtrl', function($scope, $state, Auth, ParentFactory, $timeout, FB, $firebaseAuth) {
   
   $scope.isLoggedIn = false;
   $scope.data;
@@ -8,7 +8,10 @@ angular.module('jauntly.appCtrl', [])
 
   $scope.login = function() {
     console.log('in login')
-    Auth.auth.$authWithOAuthPopup('facebook', {remember: "sessionOnly", scope: "email"})
+      var ref = new Firebase(firebaseKey);
+
+    $firebaseAuth(ref).$authWithOAuthPopup('facebook')
+    //Auth.auth.$authWithOAuthPopup('facebook', {remember: "sessionOnly", scope: "email"})
       .then(function(authData) {
         Auth.authData = authData;
         $scope.data = authData;
